@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Discussion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/delete_discussion.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Delete Discussion</h1>
+        <p>Are you sure you want to delete the discussion titled "{{ discussion.title }}"?</p>
+    </header>
+    <main>
+        <form method="POST">
+            <button type="submit" class="btn delete-btn">Yes, Delete</button>
+            <a href="{{ url_for('discussions_forum') }}" class="btn">Cancel</a>
+        </form>
+    </main>
+</body>
+</html>

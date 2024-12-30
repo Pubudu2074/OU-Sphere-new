@@ -1,0 +1,75 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #36CDB7;
+}
+
+.add-group-btn {
+    background-color: #2aa38f;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.add-group-btn:hover {
+    background-color: #1f8a6d;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+thead {
+    background-color: #36CDB7;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #36CDB7;
+}
+
+.edit-btn:hover {
+    background-color: #2aa38f;
+}
+
+.delete-btn {
+    background-color: #ff5757;
+}
+
+.delete-btn:hover {
+    background-color: #cc4646;
+}

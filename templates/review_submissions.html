@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Submissions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/review_submissions.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Review Submissions</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Submitted At</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.student_name }}</td>
+                    <td>{{ submission.submitted_at }}</td>
+                    <td>{{ submission.grade or 'Not Graded' }}</td>
+                    <td>
+                        <a href="{{ url_for('grade_submission', submission_id=submission.submission_id) }}" class="btn">Grade</a>
+                        <a href="{{ url_for('download_file', file_path=submission.file_path) }}" class="btn">Download</a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <script src="{{ url_for('static', filename='js/review_submissions.js') }}"></script>
+</body>
+</html>

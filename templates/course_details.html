@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/course_details.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ course.title }}</h1>
+        <p>{{ course.description }}</p>
+    </header>
+    <main>
+        <section>
+            <h2>Course Materials</h2>
+            <ul>
+                {% for material in materials %}
+                <li>
+                    <strong>{{ material.title }}</strong>
+                    <a href="{{ url_for('download_file', file_path=material.file_path) }}" class="btn">Download</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Assignments</h2>
+            <ul>
+                {% for assignment in assignments %}
+                    <li>
+                        <strong>{{ assignment.title }}</strong> - {{ assignment.description }}
+                        <p>Deadline: {{ assignment.deadline }}</p>
+        
+                        {% if assignment.submission_file %}
+                            <p><strong>Grade:</strong> {{ assignment.grade if assignment.grade is not none else "Not Graded" }}</p>
+                            <p><strong>Feedback:</strong> {{ assignment.feedback if assignment.feedback else "No Feedback" }}</p>
+                            <a href="{{ url_for('download_file', file_path=assignment.submission_file) }}" class="btn">Download Submission</a>
+
+                        {% else %}
+                            <p><strong>Status:</strong> Not Submitted</p>
+                            <a href="{{ url_for('submit_assignment', assignment_id=assignment.assignment_id) }}" class="btn">Submit Assignment</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+    </main>
+    <script src="{{ url_for('static', filename='js/course_details.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Progress</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/monitor_progress.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Update Progress for {{ progress.student_id }}</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <label for="progress_percentage">Progress (%)</label>
+            <input type="number" id="progress_percentage" name="progress_percentage" value="{{ progress.progress_percentage }}" required>
+
+            <label for="performance_comment">Performance Comment</label>
+            <textarea id="performance_comment" name="performance_comment">{{ progress.performance_comment }}</textarea>
+
+            <input type="hidden" name="course_id" value="{{ progress.course_id }}">
+
+            <button type="submit">Update</button>
+        </form>
+    </main>
+</body>
+</html>

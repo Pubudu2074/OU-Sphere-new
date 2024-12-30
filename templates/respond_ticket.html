@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respond to Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/support.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Respond to Ticket #{{ ticket.ticket_id }}</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <p><strong>User:</strong> {{ ticket.user_id }}</p>
+            <p><strong>Query:</strong> {{ ticket.query }}</p>
+
+            <label for="response">Response:</label>
+            <textarea id="response" name="response">{{ ticket.response }}</textarea>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="open" {% if ticket.status == 'open' %}selected{% endif %}>Open</option>
+                <option value="closed" {% if ticket.status == 'closed' %}selected{% endif %}>Closed</option>
+            </select>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </main>
+</body>
+</html>

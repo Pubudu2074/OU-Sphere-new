@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Enrollments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_courses.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Students Enrolled in Course</h1>
+    </header>
+    <main>
+        <ul>
+            {% for student in enrolled_students %}
+                <li>
+                    <strong>{{ student.username }}</strong> ({{ student.role }})
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('manage_courses') }}" class="btn">Back to Courses</a>
+    </main>
+</body>
+</html>

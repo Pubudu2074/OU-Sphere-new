@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Study Group</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_study_group.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create Study Group</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <label for="group_name">Group Name:</label>
+            <input type="text" id="group_name" name="group_name" required>
+
+            <label for="course_id">Course:</label>
+            <select id="course_id" name="course_id" required>
+                {% for course in courses %}
+                    <option value="{{ course.course_id }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="whiteboard_url">Whiteboard/Zoom URL:</label>
+            <input type="url" id="whiteboard_url" name="whiteboard_url" placeholder="Optional">
+
+            <label for="document_url">Document URL:</label>
+            <input type="url" id="document_url" name="document_url" placeholder="Optional">
+
+            <button type="submit" class="btn">Create</button>
+        </form>
+    </main>
+</body>
+</html>

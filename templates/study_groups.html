@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Groups</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/study_groups.css') }}">
+    <script>
+        function filterGroups() {
+            const searchInput = document.getElementById('search-bar').value.toLowerCase();
+            const groups = document.querySelectorAll('.group-item');
+
+            groups.forEach(group => {
+                const groupName = group.querySelector('h2').innerText.toLowerCase();
+                const groupDescription = group.querySelector('p').innerText.toLowerCase();
+                if (groupName.includes(searchInput) || groupDescription.includes(searchInput)) {
+                    group.style.display = '';
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Study Groups</h1>
+        <a href="{{ url_for('create_study_group') }}" class="btn">Create Study Group</a>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for study groups..." onkeyup="filterGroups()">
+        </div>
+        <ul class="group-list">
+            {% for group in study_groups %}
+                <li class="group-item">
+                    <h2>{{ group.group_name }}</h2>
+                    <p>{{ group.description }}</p>
+                    <p><strong>Course:</strong> {{ group.course_name }}</p>
+                    <p><strong>Created By:</strong> {{ group.creator }}</p>
+                    <div class="actions">
+                        {% if group.group_id in user_groups %}
+                            <a href="{{ group.whiteboard_url }}" target="_blank" class="btn">Open Whiteboard/Zoom</a>
+                            <a href="{{ group.document_url }}" target="_blank" class="btn">Open Document</a>
+                        {% else %}
+                            <form action="{{ url_for('join_study_group', group_id=group.group_id) }}" method="POST">
+                                <button type="submit" class="btn">Join</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <script src="{{ url_for('static', filename='js/study_groups.js') }}"></script>
+</body>
+</html>

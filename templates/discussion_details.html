@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/discussion_details.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ discussion.title }}</h1>
+        <p>{{ discussion.question }}</p>
+        <small>Created by {{ discussion.creator }} on {{ discussion.created_at }}</small>
+    </header>
+    <main>
+        <section>
+            <h2>Replies</h2>
+            <ul class="reply-list">
+                {% for reply in replies %}
+                <li>
+                    <p>{{ reply.reply_text }}</p>
+                    <small>Replied by {{ reply.replier }} on {{ reply.replied_at }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <h2>Post a Reply</h2>
+            <form method="POST">
+                <textarea name="reply" required placeholder="Write your reply here..."></textarea>
+                <button type="submit" class="btn">Submit Reply</button>
+            </form>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/discussion_details.js') }}" defer></script>
+</body>
+</html>

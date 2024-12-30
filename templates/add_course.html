@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form_pages.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Add Course</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <label for="course_id">Course ID:</label>
+            <input type="text" id="course_id" name="course_id" placeholder="Enter course ID (e.g., CS101)" required>
+
+            <label for="title">Course Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter course title" required>
+
+            <label for="description">Course Description:</label>
+            <textarea id="description" name="description" placeholder="Enter course description" required></textarea>
+
+            <button type="submit">Add Course</button>
+        </form>
+    </main>
+</body>
+</html>

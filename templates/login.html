@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="login-card">
+        <div class="column1">
+            <h1>Login</h1>
+            <p>Bringing Knowledge to Your Fingertips</p>
+            <form method="POST" action="/login">
+                <div class="form-item">
+                    <input type="text" class="form-element" name="username" placeholder="Username or email" required>
+                </div>
+                <div class="form-item">
+                    <input type="password" class="form-element" name="password" placeholder="password" required>
+                </div>
+                <div class="form-item">
+                    <select class="form-element" name="role" required>
+                        <option value="student">Student</option>
+                        <option value="lecturer">Lecturer</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-checkbox-item">
+                    <input type="checkbox" id="rememberMe" checked>
+                    <label for="rememberMe">Remember Me</label>
+                </div>
+                <div class="flex">
+                    <button type="submit">Sign In</button>
+                </div>
+            </form>
+        </div>
+        <div class="column2">
+            <h2>Welcome to</h2>
+            <h1 style="font-size:50px">OU Sphere</h1>
+            <p>Empowering Minds, Bridging Distances: Your Learning, Our Mission</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Students</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form_pages.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Assign Students to Course</h1>
+    </header>
+    <main>
+        <form method="POST">
+            {% for student in students %}
+                <div>
+                    <input type="checkbox" id="student_{{ student.username }}" name="students" value="{{ student.username }}"
+                           {% if student.username in enrolled_students %}checked{% endif %}>
+                    <label for="student_{{ student.username }}">{{ student.username }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit">Save Assignments</button>
+        </form>
+    </main>
+</body>
+</html>

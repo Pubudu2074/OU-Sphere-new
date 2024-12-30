@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Assignment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_assignment.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create Assignment</h1>
+    </header>
+    <main>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="course_id">Course:</label>
+            <select id="course_id" name="course_id" required>
+                {% for course in courses %}
+                <option value="{{ course.course_id }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="title">Assignment Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="deadline">Deadline:</label>
+            <input type="datetime-local" id="deadline" name="deadline" required>
+
+            <label for="file">Upload File:</label>
+            <input type="file" id="file" name="file" required>
+
+            <button type="submit" class="btn">Create</button>
+        </form>
+    </main>
+</body>
+</html>

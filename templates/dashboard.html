@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <!-- User Info Section -->
+    <header class="user-info">
+        <h2>{{ username }}</h2>
+        <p>{{ role }} Dashboard</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Welcome, {{ username }}</h1>
+        <!-- Utility Section: Clock and Date -->
+        <div class="utility-container">
+            <div class="clock-container">
+                <h2 id="clock"></h2>
+                <p id="date"></p>
+            </div>
+        </div>
+        <!-- Activities Section -->
+        <div class="activities-container">
+            {% for activity in activities %}
+                <div class="card activity-card">
+                    <h3>{{ activity.name }}</h3>
+                    <a href="{{ activity.url }}" class="btn">Go to {{ activity.name }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Logout Section -->
+    <footer class="logout-section">
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

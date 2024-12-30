@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_users.css') }}">
+
+
+</head>
+<body>
+    <header class="header">
+        <h1>Manage Users</h1>
+        <p>Admin Panel: View, edit, and manage platform users.</p>
+        <a href="{{ url_for('add_user') }}" class="btn add-user-btn">Add New User</a>
+    </header>
+    <main>
+        <!-- Search Bar -->
+        <input type="text" id="userSearch" placeholder="Search users..." class="search-bar">
+    
+        <!-- Users Table -->
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.role }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('edit_user', username=user.username) }}" class="btn edit-btn">Edit</a>
+                            <form action="{{ url_for('delete_user', username=user.username) }}" method="POST" class="delete-form">
+                                <button type="submit" class="btn delete-btn">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <script>
+        // Function to filter users based on search input
+        document.getElementById('userSearch').addEventListener('keyup', function () {
+            const query = this.value.toLowerCase(); // Get search input and convert to lowercase
+            const rows = document.querySelectorAll('.users-table tbody tr'); // Get all table rows
+    
+            rows.forEach(row => {
+                const username = row.cells[0].innerText.toLowerCase(); // Get the username cell value
+                if (username.includes(query)) {
+                    row.style.display = ''; // Show the row if it matches the query
+                } else {
+                    row.style.display = 'none'; // Hide the row if it doesn't match
+                }
+            });
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/manage_users.js') }}"></script>
+    
+</body>
+</html>

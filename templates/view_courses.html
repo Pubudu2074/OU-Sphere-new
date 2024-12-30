@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_courses.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Available Courses</h1>
+    </header>
+    <main>
+        <ul>
+            {% for course in courses %}
+            <li>
+                <h2>{{ course.title }}</h2>
+                <p>{{ course.description }}</p>
+                {% if course.enrolled %}
+                <a href="{{ url_for('course_details', course_id=course.course_id) }}" class="btn">View Details</a>
+                {% else %}
+                <form action="{{ url_for('enroll_course', course_id=course.course_id) }}" method="POST">
+                    <button type="submit" class="btn">Enroll</button>
+                </form>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <script src="{{ url_for('static', filename='js/view_courses.js') }}"></script>
+</body>
+</html>
